@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="지자체별 인구수와 신청액을 기준으로 협력사업 예산 승인 여부를 자동 판정합니다."
+    />
+    <title>자치행정 협력사업 예산 심사</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b4f6c'/%3E%3Cpath d='M8 9h16v3H8zm2 5h12v11H10z' fill='%23fff'/%3E%3Cpath d='m13 19 2 2 4-5' fill='none' stroke='%234fd1a1' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="masthead">
+        <div class="brand-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div>
+          <p class="eyebrow">자치행정 협력사업</p>
+          <h1>예산 신청 자동 심사</h1>
+        </div>
+        <div class="rule-chip" aria-label="심사 기준">
+          <span>심사 기준</span>
+          <strong>인구 1명당 10원</strong>
+        </div>
+      </header>
+
+      <main>
+        <section class="summary-section" aria-labelledby="summary-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">심사 현황</p>
+              <h2 id="summary-title">전체 신청 요약</h2>
+            </div>
+            <p class="update-note">신청목록 기준 자동 집계</p>
+          </div>
+
+          <div class="summary-grid" aria-live="polite">
+            <article class="summary-card approved-card">
+              <div class="summary-label">
+                <span class="summary-icon check-icon" aria-hidden="true">✓</span>
+                승인 건수
+              </div>
+              <p class="summary-value"><strong id="approvedCount">-</strong><span>건</span></p>
+              <div class="card-line"></div>
+            </article>
+
+            <article class="summary-card rejected-card">
+              <div class="summary-label">
+                <span class="summary-icon reject-icon" aria-hidden="true">!</span>
+                반려 건수
+              </div>
+              <p class="summary-value"><strong id="rejectedCount">-</strong><span>건</span></p>
+              <div class="card-line"></div>
+            </article>
+
+            <article class="summary-card amount-card">
+              <div class="summary-label">
+                <span class="summary-icon won-icon" aria-hidden="true">₩</span>
+                승인 신청액 합계
+              </div>
+              <p class="summary-value amount-value"><strong id="approvedTotal">-</strong><span>원</span></p>
+              <div class="card-line"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="review-section" aria-labelledby="review-title">
+          <div class="section-heading table-heading">
+            <div>
+              <p class="section-kicker">상세 내역</p>
+              <h2 id="review-title">지자체별 판정 결과</h2>
+            </div>
+            <div class="legend" aria-label="판정 범례">
+              <span><i class="legend-dot approved-dot"></i>승인</span>
+              <span><i class="legend-dot rejected-dot"></i>반려</span>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">지자체명, 인구수, 신청액, 한도액, 판정으로 구성된 예산 심사 결과</caption>
+              <thead>
+                <tr>
+                  <th scope="col">지자체명</th>
+                  <th scope="col" class="number-cell">인구수</th>
+                  <th scope="col" class="number-cell">신청액</th>
+                  <th scope="col" class="number-cell">한도액</th>
+                  <th scope="col" class="status-cell">판정</th>
+                </tr>
+              </thead>
+              <tbody id="resultBody">
+                <tr class="loading-row">
+                  <td colspan="5">신청 내역을 불러오는 중입니다.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="rule-note">
+            <span class="info-mark" aria-hidden="true">i</span>
+            <p><strong>판정 규칙</strong> 한도액은 인구수 × 10원이며, 신청액이 한도액보다 크면 반려됩니다.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>자치행정 협력사업 예산 심사 시스템</p>
+        <p>모든 금액은 원 단위입니다.</p>
+      </footer>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
